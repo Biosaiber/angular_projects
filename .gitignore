@@ -1,0 +1,10 @@
+# dependencies
+node_modules/
+# builds
+dist/
+# misc
+.env
+.DS_Store
+# VS Code
+.vscode/*
+!.vscode/extensions.json
