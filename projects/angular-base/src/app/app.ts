@@ -15,6 +15,9 @@ export class App {
   // message send to child component (@Input)
   messageToChild = '';
 
+  // number of sent messages
+  sentCount = 0;
+
   // value change in input (view -> model)
   onDraftChange($event: Event) {
     const target = $event.target as HTMLInputElement;
@@ -24,6 +27,7 @@ export class App {
   // click "SEND" (model -> view)
   sendMessage() {
     this.messageToChild = this.draftMessage;
+    this.sentCount++;
   }
 
   // event from child to erase message
