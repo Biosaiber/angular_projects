@@ -1,1 +1,9 @@
-<p>message-display works!</p>
+<section class="box">
+    <h3>Child Component</h3>
+    <p>
+        <strong>Message:</strong>
+        <span>{{ message || '— no message —' }}</span>
+    </p>
+
+    <button type="button" (click)="requestClear()" [disabled]="!message.trim()" aria-label="Clear message">Clear Message</button>
+</section>

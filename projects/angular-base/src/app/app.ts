@@ -1,12 +1,38 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { MessageDisplayComponent } from './message-display/message-display';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [ MessageDisplayComponent ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('angular-base');
+  // text in input field
+  draftMessage = '';
+
+  // message send to child component (@Input)
+  messageToChild = '';
+
+  // value change in input (view -> model)
+  onDraftChange($event: Event) {
+    const target = $event.target as HTMLInputElement;
+    this.draftMessage = target.value;
+  }
+
+  // click "SEND" (model -> view)
+  sendMessage() {
+    this.messageToChild = this.draftMessage;
+  }
+
+  // event from child to erase message
+  onClearFromChild() {
+    this.messageToChild = '';
+    this.draftMessage = '';
+  }
+  get isDraftValid(): boolean {
+    return this.draftMessage.trim().length > 0;
+  }
+
 }

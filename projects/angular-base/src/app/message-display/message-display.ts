@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-message-display',
-  imports: [],
+  standalone: true,
   templateUrl: './message-display.html',
   styleUrl: './message-display.css'
 })
-export class MessageDisplay {
+export class MessageDisplayComponent {
+  @Input() message: string = ''; // vstupný property
+  @Output() clear = new EventEmitter<void>(); // vystupný event
 
+  requestClear() {
+    this.clear.emit();
+  }
 }

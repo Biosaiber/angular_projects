@@ -1,5 +1,14 @@
 <main style="max-width:600px;margin:2rem auto;font-family:system-ui,Arial;">
-  <h2>Message Sender</h2>
+  <h2>Parent Component</h2>
+
+  <!-- Vstupné pole: property binding + event binding -->
+  <input [value]="draftMessage" (input)="onDraftChange($event)" placeholder="Napíš správu pre child…" (keydown.enter)="sendMessage()" style="width:100%; padding:.5rem; margin:.5rem 0;">
+
+  <!-- Odoslanie správy do childa -->
+  <button type="button" (click)="sendMessage()" [disabled]="!isDraftValid">Send Message</button>
+
+  <!-- Prepojenie s child komponentom -->
+  <app-message-display [message]="messageToChild" (clear)="onClearFromChild()"></app-message-display>
 
   <!-- sem neskôr vložíme input + button + child komponent -->
   <p style="opacity:.7">Minimal clean setup pripravený na tréning.</p>
